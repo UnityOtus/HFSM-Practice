@@ -1,0 +1,17 @@
+{
+    "name": "Modules.AI.Gizmos",
+    "rootNamespace": "",
+    "references": [
+        "Modules.AI.Blackboard",
+        "Unity.Mathematics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

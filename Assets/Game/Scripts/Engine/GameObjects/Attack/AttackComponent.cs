@@ -12,9 +12,10 @@ namespace Game.Engine
 
         private Action attackAction;
 
-        public void AddCondition(Func<bool> condition)
+        public AttackComponent AddCondition(Func<bool> condition)
         {
             this.attackCondition.AddCondition(condition);
+            return this;
         }
 
         public void AddAction(Action action)

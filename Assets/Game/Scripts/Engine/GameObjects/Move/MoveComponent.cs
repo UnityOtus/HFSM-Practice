@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // ReSharper disable MemberInitializerValueIgnored
@@ -8,25 +9,39 @@ namespace Game.Engine
     public sealed class MoveComponent : MonoBehaviour
     {
         private const float MIN_SPEED = 0.1f;
-        
-        public float MoveDirection
+
+        public float CurrentDirection
         {
-            get => this.moveDirection;
-            set => this.moveDirection = value;
+            get => this.currentDirection;
+            set => this.currentDirection = value;
         }
 
-        public bool IsMoving
-        {
-            get { return _rigidbody.velocity.x >= MIN_SPEED; }
-        }
 
         [SerializeField]
-        private float moveDirection;
+        private float currentDirection;
 
         [SerializeField]
         private float moveSpeed;
-        
+
+        private AndCondition conditions;
+        private float speedX;
+
         private Rigidbody2D _rigidbody;
+
+        public void AddCondition(Func<bool> condition)
+        {
+            this.conditions.AddCondition(condition);
+        }
+
+        public bool IsMoving()
+        {
+            return Mathf.Abs(this.speedX) >= MIN_SPEED;
+        }
+
+        public bool IsNotMoving()
+        {
+            return !this.IsMoving();
+        }
 
         private void Awake()
         {
@@ -35,9 +50,8 @@ namespace Game.Engine
 
         public void FixedUpdate()
         {
-            float speedX = this.moveDirection * this.moveSpeed;
-            float speedY = _rigidbody.velocity.y;
-            _rigidbody.velocity = new Vector2(speedX, speedY);
+            this.speedX = this.conditions.Invoke() ? this.currentDirection * this.moveSpeed : 0;
+            _rigidbody.velocity = new Vector2(speedX, _rigidbody.velocity.y);
         }
     }
 }

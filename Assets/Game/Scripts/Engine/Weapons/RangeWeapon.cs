@@ -33,7 +33,7 @@ namespace Game.Engine
 
         public override void Fire()
         {
-            if (this.timer.IsEnded())
+            if (this.CanFire())
             {
                 _fireBulletComponent.Fire();
                 this.charges--;

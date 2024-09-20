@@ -19,7 +19,7 @@ namespace Game.Engine
 
         public void LateUpdate()
         {
-            this._animator.SetBool(IsMovingHash, _moveComponent.IsMoving);
+            this._animator.SetBool(IsMovingHash, _moveComponent.IsMoving());
         }
     }
 }

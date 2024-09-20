@@ -22,7 +22,7 @@ namespace Game.Engine
 
             if (_character != null && _character.TryGetComponent(out MoveComponent moveComponent))
             {
-                moveComponent.MoveDirection = moveDirection;
+                moveComponent.CurrentDirection = moveDirection;
             }
         }
     }

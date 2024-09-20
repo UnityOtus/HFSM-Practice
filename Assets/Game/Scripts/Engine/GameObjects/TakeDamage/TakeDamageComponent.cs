@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Engine
@@ -15,6 +16,7 @@ namespace Game.Engine
             _healthComponent = this.GetComponent<HealthComponent>();
         }
         
+        [Button]
         public bool TakeDamage(int damage)
         {
             if (_healthComponent.Current <= 0)

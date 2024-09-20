@@ -20,7 +20,7 @@ namespace Game.Content
         
         private void Start()
         {
-            _moveComponent.MoveDirection = Mathf.Sign(this.transform.right.x);
+            _moveComponent.CurrentDirection = Mathf.Sign(this.transform.right.x);
             Destroy(this.gameObject, this.lifetime);
         }
 

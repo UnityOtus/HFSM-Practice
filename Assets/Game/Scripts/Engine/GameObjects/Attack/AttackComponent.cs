@@ -27,7 +27,7 @@ namespace Game.Engine
         {
             if (this.attackCondition.Invoke())
             {
-                this.attackAction.Invoke();
+                this.attackAction?.Invoke();
                 this.OnAttack?.Invoke();
             }
         }

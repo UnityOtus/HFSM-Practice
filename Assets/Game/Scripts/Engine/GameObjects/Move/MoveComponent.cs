@@ -16,17 +16,28 @@ namespace Game.Engine
             set => this.currentDirection = value;
         }
 
-
         [SerializeField]
         private float currentDirection;
 
         [SerializeField]
         private float moveSpeed;
 
-        private AndCondition conditions;
+        private readonly AndCondition conditions = new();
+
         private float speedX;
 
         private Rigidbody2D _rigidbody;
+
+        private void Awake()
+        {
+            _rigidbody = this.GetComponent<Rigidbody2D>();
+        }
+
+        public void FixedUpdate()
+        {
+            this.speedX = this.conditions.Invoke() ? this.currentDirection * this.moveSpeed : 0;
+            _rigidbody.velocity = new Vector2(speedX, _rigidbody.velocity.y);
+        }
 
         public void AddCondition(Func<bool> condition)
         {
@@ -41,17 +52,6 @@ namespace Game.Engine
         public bool IsNotMoving()
         {
             return !this.IsMoving();
-        }
-
-        private void Awake()
-        {
-            _rigidbody = this.GetComponent<Rigidbody2D>();
-        }
-
-        public void FixedUpdate()
-        {
-            this.speedX = this.conditions.Invoke() ? this.currentDirection * this.moveSpeed : 0;
-            _rigidbody.velocity = new Vector2(speedX, _rigidbody.velocity.y);
         }
     }
 }

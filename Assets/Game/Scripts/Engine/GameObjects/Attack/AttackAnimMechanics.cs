@@ -8,12 +8,13 @@ namespace Game.Engine
         private static readonly int Attack = Animator.StringToHash("Attack");
 
         private Animator _animator;
+
+        [SerializeField]
         private AttackComponent _attackComponent;
 
         private void Awake()
         {
             _animator = this.GetComponent<Animator>();
-            _attackComponent = this.GetComponent<AttackComponent>();
         }
 
         private void OnEnable()

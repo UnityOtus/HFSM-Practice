@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5629958688521901652}
   - component: {fileID: 2466784918087540478}
   - component: {fileID: 6190867774393386573}
+  - component: {fileID: 6746353315240400249}
+  - component: {fileID: 6082032007524735441}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -47,17 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5a19314db2436590b01923969dc5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage:
-    value: 1
-  moveComponent:
-    rigidbody: {fileID: 2466784918087540478}
-    moveDirection:
-      value: 0
-    baseSpeed:
-      value: 20
-  countdown:
-    duration: 3
-    time: 3
+  lifetime: 3
 --- !u!50 &2466784918087540478
 Rigidbody2D:
   serializedVersion: 4
@@ -120,6 +112,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &6746353315240400249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327892040766201709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a450045c0e4ae5a5dc6b4867420e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDirection: 0
+  moveSpeed: 5
+--- !u!114 &6082032007524735441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327892040766201709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f33fc7e8224894b5d9108b33f4c992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &7639393083066838136
 GameObject:
   m_ObjectHideFlags: 0

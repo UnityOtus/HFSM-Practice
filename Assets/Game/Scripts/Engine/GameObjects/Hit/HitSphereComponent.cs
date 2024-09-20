@@ -1,12 +1,11 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
 namespace Game.Engine
 {
     [Serializable]
-    public sealed class HitSphereComponent
+    public sealed class HitSphereComponent : MonoBehaviour
     {
         private static readonly Collider2D[] buffer = new Collider2D[32];
 
@@ -19,7 +18,6 @@ namespace Game.Engine
         [SerializeField]
         private LayerMask layerMask;
 
-        [Button]
         public bool Hit(Func<GameObject, bool> action)
         {
             var size = Physics2D.OverlapCircleNonAlloc(this.hitCenter.position, hitRadius, buffer, this.layerMask);

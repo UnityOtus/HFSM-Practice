@@ -45,6 +45,11 @@ namespace Game.Engine
             return this;
         }
 
+        public void Stop()
+        {
+            this.currentDirection = 0;
+        }
+
         public bool IsMoving()
         {
             return Mathf.Abs(this.speedX) >= MIN_SPEED;

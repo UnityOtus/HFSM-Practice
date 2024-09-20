@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dummy
       objectReference: {fileID: 0}
+    - target: {fileID: 8356884204472803204, guid: b535f41cc0dee4d449bd518d3160d1e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1140,6 +1144,7 @@ GameObject:
   - component: {fileID: 1823177768}
   - component: {fileID: 1823177769}
   - component: {fileID: 1823177770}
+  - component: {fileID: 1823177771}
   m_Layer: 8
   m_Name: <AI>
   m_TagString: Untagged
@@ -1178,6 +1183,10 @@ MonoBehaviour:
   - rid: 4531773977505300480
   - rid: 4531773977505300482
   - rid: 4531773977505300484
+  - rid: 4531773977505300487
+  - rid: 4531773977505300488
+  - rid: 4531773977505300489
+  - rid: 4531773977505300492
   references:
     version: 2
     RefIds:
@@ -1199,6 +1208,28 @@ MonoBehaviour:
       type: {class: ColliderBufferInstaller, ns: Game.Engine.AI, asm: Engine}
       data:
         initialSize: 4
+    - rid: 4531773977505300487
+      type: {class: TransformArrayInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 5
+        value:
+        - {fileID: 1904121577}
+        - {fileID: 2022502902}
+    - rid: 4531773977505300488
+      type: {class: IntInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 6
+        value: 0
+    - rid: 4531773977505300489
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 7
+        value: 0.25
+    - rid: 4531773977505300492
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 8
+        value: 1
 --- !u!114 &1823177769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,6 +1279,28 @@ MonoBehaviour:
       type: {class: SensorDataGizmos, ns: Game.Engine.AI, asm: Engine}
       data:
         color: {r: 1, g: 0, b: 1, a: 1}
+--- !u!114 &1823177771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823177766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c8593d15742eab762702a74cf4870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 1823177768}
+  initialState:
+    rid: 4531773977505300491
+  controlState: 1
+  updateMode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300491
+      type: {class: AttackState, ns: Game.Engine.AI, asm: Assembly-CSharp}
 --- !u!1 &1840973718
 GameObject:
   m_ObjectHideFlags: 0

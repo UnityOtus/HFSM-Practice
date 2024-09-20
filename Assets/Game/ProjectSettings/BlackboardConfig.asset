@@ -35,3 +35,6 @@ MonoBehaviour:
   - id: 4
     name: Target
     type: 'GameObject : class'
+  - id: 5
+    name: Waypoints
+    type: 'Transform[] : class'

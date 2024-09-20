@@ -25,7 +25,7 @@ namespace Game.Engine.AI
 
             ref var buffer = ref blackboard.GetColliderBuffer();
             int count = buffer.size;
-            
+
             Vector3 myPosition = blackboard.GetCharacter().transform.position;
 
             float minDistance = float.MaxValue;
@@ -34,16 +34,15 @@ namespace Game.Engine.AI
             for (int i = 0; i < count; i++)
             {
                 Collider2D other = colliders[i];
-                
-                if (!other.TryGetComponent(out HealthComponent healthComponent) ||
-                    healthComponent.IsNotAlive())
+
+                if (!other.TryGetComponent(out HealthComponent healthComponent) || healthComponent.IsNotAlive())
                 {
                     continue;
                 }
 
                 Vector3 targetPosition = other.transform.position;
                 Vector3 distanceVector = targetPosition - myPosition;
-                
+
                 float targetDistance = distanceVector.sqrMagnitude;
                 if (targetDistance < minDistance * minDistance)
                 {

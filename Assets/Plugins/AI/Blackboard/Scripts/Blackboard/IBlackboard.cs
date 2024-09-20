@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEngine;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
     public interface IBlackboard
     {
@@ -66,29 +64,5 @@ namespace Modules.AI
         IReadOnlyDictionary<int, float3> Float3Values { get; }
         IReadOnlyDictionary<int, quaternion> QuaternionValues { get; }
         IReadOnlyDictionary<int, IRef> StructValues { get; }
-        
-        public interface IRef
-        {
-            object Value { get; }
-        }
-        
-        [Serializable]
-        public sealed class Ref<T> : IRef
-        {
-            public object Value => value;
-
-            [SerializeField]
-            public T value;
-
-            internal Ref(T value)
-            {
-                this.value = value;
-            }
-
-            public static implicit operator T(Ref<T> it)
-            {
-                return it.value;
-            }
-        }
     }
 }

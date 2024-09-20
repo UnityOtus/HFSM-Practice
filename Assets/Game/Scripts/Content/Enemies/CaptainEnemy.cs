@@ -88,7 +88,7 @@ namespace Game.Content
         [Get(AttackAPI.SwitchToRangeWeapon)]
         public AtomicEvent switchToRangeWeaponAction;
 
-        public Countdown switchWeaponCountdown;
+        public Timer switchWeaponTimer;
 
         public MeleeWeapon meleeWeapon;
         public RangeWeapon rangeWeapon;
@@ -122,18 +122,18 @@ namespace Game.Content
                 it.Compose();
                 it.AttackCondition.Append(this.healthComponent.IsAlive);
                 it.AttackCondition.Append(this.moveComponent.IsMoving.AsNot());
-                it.AttackCondition.Append(new AtomicFunction<bool>(this.switchWeaponCountdown.IsEnded));
+                it.AttackCondition.Append(new AtomicFunction<bool>(this.switchWeaponTimer.IsEnded));
             });
 
             this.switchToMeleeWeaponAction.Subscribe(() =>
             {
                 this.currentWeapon.Value = this.meleeWeapon;
-                this.switchWeaponCountdown.Reset();
+                this.switchWeaponTimer.Reset();
             });
             this.switchToRangeWeaponAction.Subscribe(() =>
             {
                 this.currentWeapon.Value = this.rangeWeapon;
-                this.switchWeaponCountdown.Reset();
+                this.switchWeaponTimer.Reset();
             });
 
             this.flipMechanics = new FlipMechanics(this.flipDirection, this.transform);
@@ -148,7 +148,7 @@ namespace Game.Content
             this.groundedComponent.OnFixedUpdate(deltaTime);
             this.flipMechanics.OnFixedUpdate(deltaTime);
             this.lookMechanics.OnFixedUpdate(deltaTime);
-            this.switchWeaponCountdown.Tick(deltaTime);
+            this.switchWeaponTimer.Tick(deltaTime);
         }
         
         public void Enable()

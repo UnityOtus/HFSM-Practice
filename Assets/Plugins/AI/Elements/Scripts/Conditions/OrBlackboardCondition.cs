@@ -1,14 +1,15 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [Serializable, InlineProperty]
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Elements")]
+    [Serializable, InlineProperty, LabelWidth(1)]
     public sealed class OrBlackboardCondition : IBlackboardCondition
     {
-        [GUIColor(0.43f, 0.63f, 0.74f)]
-        [SerializeReference, LabelText("OR")]
+        [SerializeReference, HideLabel]
         private IBlackboardCondition[] conditions;
 
         public OrBlackboardCondition()
@@ -30,6 +31,7 @@ namespace Modules.AI
             for (int i = 0, count = this.conditions.Length; i < count; i++)
             {
                 IBlackboardCondition condition = this.conditions[i];
+                
                 if (condition.Invoke(blackboard))
                 {
                     return true;

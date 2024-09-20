@@ -3,8 +3,9 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Blackboard")]
     [Serializable]
     public class GroupInstaller : IBlackboardInstaller
     {

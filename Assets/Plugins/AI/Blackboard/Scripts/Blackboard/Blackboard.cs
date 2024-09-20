@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
     public sealed class Blackboard : IBlackboard
     {
@@ -13,7 +13,7 @@ namespace Modules.AI
         private readonly Dictionary<int, float3> float3Values = new();
         private readonly Dictionary<int, quaternion> quaternionValues = new();
         private readonly Dictionary<int, object> objValues = new();
-        private readonly Dictionary<int, IBlackboard.IRef> structValues = new();
+        private readonly Dictionary<int, IRef> structValues = new();
 
         public IReadOnlyCollection<int> TagValues => this.tags;
         public IReadOnlyDictionary<int, bool> BoolValues => this.boolValues;
@@ -22,7 +22,7 @@ namespace Modules.AI
         public IReadOnlyDictionary<int, object> ObjectValues => this.objValues;
         public IReadOnlyDictionary<int, float2> Float2Values => this.float2Values;
         public IReadOnlyDictionary<int, float3> Float3Values => this.float3Values;
-        public IReadOnlyDictionary<int, IBlackboard.IRef> StructValues => this.structValues;
+        public IReadOnlyDictionary<int, IRef> StructValues => this.structValues;
         public IReadOnlyDictionary<int, quaternion> QuaternionValues => this.quaternionValues;
 
         public bool HasTag(int key) => this.tags.Contains(key);
@@ -50,7 +50,7 @@ namespace Modules.AI
 
         public ref T GetStruct<T>(int key) where T : struct
         {
-            var @struct = (IBlackboard.Ref<T>) this.structValues[key];
+            var @struct = (Ref<T>) this.structValues[key];
             return ref @struct.value;
         }
 
@@ -78,23 +78,11 @@ namespace Modules.AI
             return false;
         }
 
-        // public bool TryGetStruct<T>(int key, out T value) where T : struct
-        // {
-        //     if (this.structValues.TryGetValue(key, out IBlackboard.IStruct ptr))
-        //     {
-        //         value = ((IBlackboard.Struct<T>) ptr).value;
-        //         return true;
-        //     }
-        //
-        //     value = default;
-        //     return false;
-        // }
-
-        public bool TryGetStruct<T>(int key, out IBlackboard.Ref<T> value) where T : struct
+        public bool TryGetStruct<T>(int key, out Ref<T> value) where T : struct
         {
-            if (this.structValues.TryGetValue(key, out IBlackboard.IRef ptr))
+            if (this.structValues.TryGetValue(key, out IRef ptr))
             {
-                value = (IBlackboard.Ref<T>) ptr;
+                value = (Ref<T>) ptr;
                 return true;
             }
 
@@ -122,14 +110,13 @@ namespace Modules.AI
 
         public void SetStruct<T>(int key, T value) where T : struct
         {
-            if (this.structValues.TryGetValue(key, out IBlackboard.IRef @struct) &&
-                @struct is IBlackboard.Ref<T> tStruct)
+            if (this.structValues.TryGetValue(key, out IRef @struct) && @struct is Ref<T> tStruct)
             {
                 tStruct.value = value;
             }
             else
             {
-                this.structValues[key] = new IBlackboard.Ref<T>(value);
+                this.structValues[key] = new Ref<T>(value);
             }
         }
 

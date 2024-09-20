@@ -1,8 +1,10 @@
 using System;
+using UnityEngine.Scripting.APIUpdating;
 using Object = UnityEngine.Object;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Blackboard")]
     [Serializable]
     public sealed class UnityObjectInstaller : BlackboardInstaller<Object>
     {

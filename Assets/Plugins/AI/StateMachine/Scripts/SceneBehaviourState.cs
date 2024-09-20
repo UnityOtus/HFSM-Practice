@@ -1,9 +1,9 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [AddComponentMenu("Modules/AI/AI Behaviour State ")]
+    [AddComponentMenu("Atomic/AI/AI Behaviour State")]
     public sealed class SceneBehaviourState : MonoBehaviour, ISerializationCallbackReceiver
     {
         [SerializeField, Space]

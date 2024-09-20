@@ -1,13 +1,16 @@
-namespace Modules.AI
+using UnityEngine.Scripting.APIUpdating;
+
+namespace Atomic.AI
 {
-    public interface IState : IStartBehaviour, IUpdateBehaviour, IStopBehaviour
+    [MovedFrom(true, "Modules.AI", "Modules.AI.StateMachine", null)] 
+    public interface IState : IAIEnable, IAIUpdate, IAIDisable
     {
         public string Name { get; }
 
         void OnEnter(IBlackboard blackboard);
         void OnExit(IBlackboard blackboard);
 
-        void IStartBehaviour.OnStart(IBlackboard blackboard) => this.OnEnter(blackboard);
-        void IStopBehaviour.OnStop(IBlackboard blackboard) => this.OnExit(blackboard);
+        void IAIEnable.Enable(IBlackboard blackboard) => this.OnEnter(blackboard);
+        void IAIDisable.Disable(IBlackboard blackboard) => this.OnExit(blackboard);
     }
 }

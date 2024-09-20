@@ -1,8 +1,8 @@
 using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [MovedFrom(true, null, null, "IAIAction")] 
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Elements")] 
     public interface IBlackboardAction
     {
         void Invoke(IBlackboard blackboard);

@@ -1,61 +1,36 @@
-using Atomic.Elements;
-using Atomic.Objects;
+using System;
 using Game.Engine;
 using UnityEngine;
 
 namespace Game.Content
 {
-    public sealed class Bullet : AtomicObject
+    [RequireComponent(typeof(MoveComponent), typeof(DealDamageComponent))]
+    public sealed class Bullet : MonoBehaviour
     {
-        [SerializeField]
-        private AtomicValue<int> damage = new(1);
+        private MoveComponent _moveComponent;
+        private DealDamageComponent _damageComponent;
 
         [SerializeField]
-        private DealDamageAction dealDamageAction = new();
-
-        [SerializeField]
-        private MoveComponent moveComponent;
-
-        [SerializeField]
-        private AtomicAction<IAtomicObject> deathEvent;
-
-        private DamageTriggerMechanics damageTriggerMechanics;
-
-        [SerializeField]
-        private Countdown countdown;
-
-        public override void Compose()
-        {
-            base.Compose();
-
-            this.moveComponent.Compose();
-            this.moveComponent.MoveDirection.Value = Mathf.Sign(this.transform.right.x);
-
-            this.dealDamageAction.Compose(this.damage);
-            this.damageTriggerMechanics = new DamageTriggerMechanics(this.dealDamageAction, this.deathEvent);
-            this.deathEvent.Compose(_ => Destroy(this.gameObject));
-        }
+        private float lifetime = 3;
 
         private void Awake()
         {
-            this.Compose();
+            _moveComponent = this.GetComponent<MoveComponent>();
+            _damageComponent = this.GetComponent<DealDamageComponent>();
+        }
+        
+        private void Start()
+        {
+            _moveComponent.MoveDirection = Mathf.Sign(this.transform.right.x);
+            Destroy(this.gameObject, this.lifetime);
         }
 
-        private void FixedUpdate()
+        public void OnTriggerEnter2D(Collider2D collider)
         {
-            var deltaTime = Time.fixedDeltaTime;
-            this.moveComponent.OnFixedUpdate(deltaTime);
-            this.countdown.Tick(deltaTime);
-
-            if (this.countdown.IsEnded())
+            if (_damageComponent.DealDamage(collider.gameObject))
             {
                 Destroy(this.gameObject);
             }
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            this.damageTriggerMechanics.OnTriggerEnter2D(other);
         }
     }
 }

@@ -1,25 +1,17 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [Serializable, InlineProperty]
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Elements")]
+    [Serializable, InlineProperty, LabelWidth(1)]
     public sealed class NotBlackboardCondition : IBlackboardCondition
     {
-        [GUIColor(0.74f, 0.43f, 0.43f)]
-        [SerializeReference, LabelText("NOT")]
-        private IBlackboardCondition condition;
-
-        public NotBlackboardCondition()
-        {
-        }
-
-        public NotBlackboardCondition(IBlackboardCondition condition)
-        {
-            this.condition = condition;
-        }
-
+        [SerializeReference, HideLabel]
+        private IBlackboardCondition condition = default;
+        
         public bool Invoke(IBlackboard blackboard)
         {
             if (this.condition == null)

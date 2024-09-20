@@ -1,8 +1,8 @@
 using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [MovedFrom(true, null, null, "IAICondition")] 
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Elements")]
     public interface IBlackboardCondition : IBlackboardFunction<bool>
     {
     }

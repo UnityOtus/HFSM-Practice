@@ -1,8 +1,10 @@
 using System;
 using Sirenix.OdinInspector;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Blackboard")]
     [Serializable, InlineProperty]
     public sealed class BoolInstaller : BlackboardInstaller<bool>
     {

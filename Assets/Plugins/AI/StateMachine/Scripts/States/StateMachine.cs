@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.StateMachine")]
     [Serializable]
     public sealed class StateMachine : State, ISerializationCallbackReceiver
     {
@@ -18,73 +20,16 @@ namespace Modules.AI
 #endif
         //TODO: Реогранизовать список в массив. Чтобы индекс был айдишником!
         [SerializeReference]
-        private List<IState> states = new();
+        private IState[] states = Array.Empty<IState>();
 
         [Header("Transitions")]
 #if UNITY_EDITOR
         [ListDrawerSettings(OnBeginListElementGUI = nameof(DrawTransitionLabel))]
 #endif
         [SerializeField]
-        private List<StateTransition> transitions = new();
+        private StateTransition[] transitions = Array.Empty<StateTransition>();
 
         private Dictionary<int, List<StateTransition>> transitionMap;
-
-        
-        
-        //TODO: Пока лучше не использовать, так как переходы привязаны к индексам. Позже пофикшу 
-        public bool AddState(IState state)
-        {
-            if (this.states.Contains(state))
-            {
-                return false;
-            }
-            
-            this.states.Add(state);
-            return true;
-        }
-
-        //TODO: Пока лучше не использовать, так как переходы привязаны к индексам. Позже пофикшу 
-        public bool RemoveState(IState state)
-        {
-            return this.states.Remove(state);
-        }
-
-        //TODO: Пока лучше не использовать, так как переходы привязаны к индексам. Позже пофикшу 
-        public bool AddTransition(StateTransition transition)
-        {
-            if (this.transitions.Contains(transition))
-            {
-                return false;
-            }
-            
-            this.transitions.Add(transition);
-
-            int sourceState = transition.sourceState;
-            if (!this.transitionMap.TryGetValue(sourceState, out var list))
-            {
-                list = new List<StateTransition>();
-                this.transitionMap.Add(sourceState, list);
-            }
-
-            list.Add(transition);
-            return true;
-        }
-
-        //TODO: Пока лучше не использовать, так как переходы привязаны к индексам. Позже пофикшу 
-        public bool RemoveTransition(StateTransition transition)
-        {
-            if (!this.transitions.Remove(transition))
-            {
-                return false;
-            }
-
-            if (!this.transitionMap.TryGetValue(transition.sourceState, out var list))
-            {
-                return true;
-            }
-
-            return list.Remove(transition);
-        }
 
         public override void OnEnter(IBlackboard blackboard)
         {
@@ -157,7 +102,6 @@ namespace Modules.AI
         {
         }
 
-#if UNITY_EDITOR
         private void DrawStateLabel(int index)
         {
             if (this.states == null)
@@ -203,7 +147,7 @@ namespace Modules.AI
                 return result;
             }
 
-            for (int i = 0, count = this.states.Count; i < count; i++)
+            for (int i = 0, count = this.states.Length; i < count; i++)
             {
                 var state = this.states[i];
                 if (state != null)
@@ -214,6 +158,5 @@ namespace Modules.AI
 
             return result;
         }
-#endif
     }
 }

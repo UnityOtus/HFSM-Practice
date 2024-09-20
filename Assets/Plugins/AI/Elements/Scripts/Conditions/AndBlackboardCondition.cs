@@ -2,14 +2,15 @@ using System;
 using System.Runtime.CompilerServices;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [Serializable, InlineProperty]
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Elements")]
+    [Serializable, InlineProperty, LabelWidth(1)]
     public sealed class AndBlackboardCondition : IBlackboardCondition
     {
-        [GUIColor(0.37f, 0.75f, 0.55f)]
-        [SerializeReference, LabelText("AND")]
+        [SerializeReference, HideLabel]
         private IBlackboardCondition[] conditions;
 
         public AndBlackboardCondition()

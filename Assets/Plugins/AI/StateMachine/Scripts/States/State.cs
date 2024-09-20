@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.StateMachine")]
     [Serializable]
     public class State : IState, ISerializationCallbackReceiver
     {
@@ -16,9 +18,9 @@ namespace Modules.AI
 
         [Header("Behaviours")]
         [SerializeReference]
-        private IBehaviour[] behaviours = default;
+        private IAIBehaviour[] behaviours = default;
         
-        private List<IUpdateBehaviour> updateBehaviours;
+        private List<IAIUpdate> updateBehaviours;
 
         [Header("Actions")]
         [SerializeReference]
@@ -42,9 +44,9 @@ namespace Modules.AI
             
             for (int i = 0, count = this.behaviours.Length; i < count; i++)
             {
-                if (this.behaviours[i] is IStartBehaviour behaviour)
+                if (this.behaviours[i] is IAIEnable behaviour)
                 {
-                    behaviour.OnStart(blackboard);
+                    behaviour.Enable(blackboard);
                 }
             }
         }
@@ -89,7 +91,7 @@ namespace Modules.AI
 
             for (int i = 0; i < count; i++)
             {
-                IUpdateBehaviour behaviour = updateBehaviours[i];
+                IAIUpdate behaviour = updateBehaviours[i];
                 behaviour.OnUpdate(blackboard, deltaTime);
             }
         }
@@ -129,9 +131,9 @@ namespace Modules.AI
 
             for (int i = 0, count = this.behaviours.Length; i < count; i++)
             {
-                if (this.behaviours[i] is IStopBehaviour behaviour)
+                if (this.behaviours[i] is IAIDisable behaviour)
                 {
-                    behaviour.OnStop(blackboard);
+                    behaviour.Disable(blackboard);
                 }
             }
         }
@@ -152,7 +154,7 @@ namespace Modules.AI
 
         private void InitBehaviours()
         {
-            this.updateBehaviours = new List<IUpdateBehaviour>();
+            this.updateBehaviours = new List<IAIUpdate>();
 
             if (this.behaviours == null)
             {
@@ -161,7 +163,7 @@ namespace Modules.AI
 
             for (int i = 0, count = this.behaviours.Length; i < count; i++)
             {
-                if (this.behaviours[i] is IUpdateBehaviour updateBehaviour)
+                if (this.behaviours[i] is IAIUpdate updateBehaviour)
                 {
                     this.updateBehaviours.Add(updateBehaviour);
                 }

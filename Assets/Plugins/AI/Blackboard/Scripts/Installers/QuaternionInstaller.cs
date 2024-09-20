@@ -1,8 +1,10 @@
 using System;
 using Unity.Mathematics;
+using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Blackboard")]
     [Serializable]
     public sealed class QuaternionInstaller : BlackboardInstaller<quaternion>
     {

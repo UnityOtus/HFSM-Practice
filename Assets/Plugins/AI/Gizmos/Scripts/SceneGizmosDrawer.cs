@@ -2,9 +2,9 @@
 using System;
 using UnityEngine;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [AddComponentMenu("Modules/AI/AI Gizmos")]
+    [AddComponentMenu("Atomic/AI/AI Gizmos Drawer")]
     [DisallowMultipleComponent]
     public sealed class SceneGizmosDrawer : MonoBehaviour
     {
@@ -12,7 +12,7 @@ namespace Modules.AI
         private SceneBlackboard blackboard;
 
         [SerializeReference]
-        private IDrawGizmos[] gizmoses;
+        private IAIGizmos[] gizmoses;
 
         [SerializeField]
         private bool drawGizmos;
@@ -51,7 +51,7 @@ namespace Modules.AI
             {
                 for (int i = 0, count = this.gizmoses.Length; i < count; i++)
                 {
-                    IDrawGizmos logic = this.gizmoses[i];
+                    IAIGizmos logic = this.gizmoses[i];
                     logic?.OnGizmos(this.blackboard);
                 }
             }
@@ -87,7 +87,7 @@ namespace Modules.AI
             {
                 for (int i = 0, count = this.gizmoses.Length; i < count; i++)
                 {
-                    IDrawGizmos logic = this.gizmoses[i];
+                    IAIGizmos logic = this.gizmoses[i];
                     logic?.OnGizmos(this.blackboard);
                 }
             }

@@ -7,9 +7,9 @@ using UnityEngine;
 
 // ReSharper disable FieldCanBeMadeReadOnly.Local
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [AddComponentMenu("Modules/AI/AI Blackboard")]
+    [AddComponentMenu("Atomic/AI/AI Blackboard")]
     [DisallowMultipleComponent]
     public sealed class SceneBlackboard : MonoBehaviour, IBlackboard, ISerializationCallbackReceiver
     {
@@ -26,7 +26,7 @@ namespace Modules.AI
         public IReadOnlyDictionary<int, float3> Float3Values => this.blackboard.Float3Values;
         public IReadOnlyDictionary<int, quaternion> QuaternionValues => this.blackboard.QuaternionValues;
         public IReadOnlyDictionary<int, object> ObjectValues => this.blackboard.ObjectValues;
-        public IReadOnlyDictionary<int, IBlackboard.IRef> StructValues => this.blackboard.StructValues;
+        public IReadOnlyDictionary<int, IRef> StructValues => this.blackboard.StructValues;
 
         public bool HasTag(int key) => blackboard.HasTag(key);
         public bool HasBool(int key) => this.blackboard.HasBool(key);
@@ -71,14 +71,13 @@ namespace Modules.AI
 
         public bool TryGetObject<T>(int key, out T value) where T : class =>
             this.blackboard.TryGetObject(key, out value);
-        //
-        // public bool TryGetStruct<T>(int key, out T value) where T : struct =>
-        //     this.blackboard.TryGetStruct(key, out value);
 
-        public bool TryGetStruct<T>(int key, out IBlackboard.Ref<T> value) where T : struct 
+        public bool TryGetStruct<T>(int key, out Ref<T> value) where T : struct 
             => this.blackboard.TryGetStruct(key, out value);
 
-        public void SetTag(int key) => this.blackboard.SetTag(key);
+        [FoldoutGroup("Debug")]
+        [Button, HideInEditorMode]
+        public void SetTag([BlackboardKey] int key) => this.blackboard.SetTag(key);
 
         [FoldoutGroup("Debug")]
         [Button, HideInEditorMode]
@@ -284,7 +283,7 @@ namespace Modules.AI
                     _valueCache[name] =  value;
                 }
                 
-                foreach ((int key, IBlackboard.IRef value) in this.blackboard.StructValues)
+                foreach ((int key, IRef value) in this.blackboard.StructValues)
                 {
                     string name = _nameFunc?.Invoke(key) ?? key.ToString();
                     _valueCache[name] =  value;

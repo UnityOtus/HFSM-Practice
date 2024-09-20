@@ -1,11 +1,13 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 // ReSharper disable UnassignedField.Local
 
-namespace Modules.AI
+namespace Atomic.AI
 {
+    [MovedFrom(true, "Modules.AI", "Modules.AI.StateMachine")]
     [Serializable]
     public sealed class StateTransition
     {
@@ -83,14 +85,11 @@ namespace Modules.AI
             }
         }
 
-#if UNITY_EDITOR
-
         internal ValueDropdownList<int> editor_stateNamesDebug;
 
         internal ValueDropdownList<int> DrawStateNames()
         {
             return editor_stateNamesDebug;
         }
-#endif
     }
 }

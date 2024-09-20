@@ -5,12 +5,13 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
     [CreateAssetMenu(
         fileName = "BlackboardConfig",
-        menuName = "Modules/New BlackboardConfig"
+        menuName = "Atomic/AI/New BlackboardConfig"
     )]
     internal sealed class BlackboardConfig : ScriptableObject
     {
@@ -49,6 +50,7 @@ namespace Modules.AI
             get => this.keys;
         }
 
+        public string Namespace = "Atomic.AI";
 
         [SerializeField]
         public string directoryPath = "Assets/Plugins/AI/Blackboards/Scripts";
@@ -56,8 +58,9 @@ namespace Modules.AI
         [SerializeField]
         public string className = "BlackboardAPI";
 
+        [FormerlySerializedAs("namespaces")]
         [SerializeField]
-        public string[] namespaces;
+        public string[] imports;
         
         [Space]
         [SerializeField]

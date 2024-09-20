@@ -1,4 +1,4 @@
-namespace Modules.AI
+namespace Atomic.AI
 {
     public sealed class BehaviourState
     {

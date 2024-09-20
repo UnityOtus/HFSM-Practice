@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
     public sealed class BlackboardWindow : EditorWindow
     {

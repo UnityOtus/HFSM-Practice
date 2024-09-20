@@ -4,11 +4,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
-    [MovedFrom(true, null, null, "WireSphereAIGizmos")] 
+    [MovedFrom(true, "Modules.AI", "Modules.AI.Gizmos", null)] 
     [Serializable]
-    public sealed class WireSphereGizmos : IDrawGizmos
+    public sealed class WireSphereGizmos : IAIGizmos
     {
         [BlackboardKey]
         [SerializeField]

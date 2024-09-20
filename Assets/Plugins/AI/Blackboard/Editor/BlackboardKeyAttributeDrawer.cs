@@ -7,7 +7,7 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Modules.AI
+namespace Atomic.AI
 {
     [UsedImplicitly]
     public sealed class BlackboardKeyAttributeDrawer : OdinAttributeDrawer<BlackboardKeyAttribute, int>

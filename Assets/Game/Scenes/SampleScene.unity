@@ -1293,14 +1293,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackboard: {fileID: 1823177768}
   initialState:
-    rid: 4531773977505300491
+    rid: 4531773977505300493
   controlState: 1
   updateMode: 0
   references:
     version: 2
     RefIds:
-    - rid: 4531773977505300491
-      type: {class: AttackState, ns: Game.Engine.AI, asm: Assembly-CSharp}
+    - rid: 4531773977505300493
+      type: {class: StateMachine, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Root
+        behaviours: []
+        enterActions: []
+        exitActions: []
+        currentState: 1
+        states:
+        - rid: 4531773977505300496
+        - rid: 4531773977505300497
+        transitions:
+        - sourceState: 1
+          targetState: 0
+          conditions:
+          - rid: 4531773977505300498
+          actions: []
+        - sourceState: 0
+          targetState: 1
+          conditions:
+          - rid: 4531773977505300499
+          actions: []
+    - rid: 4531773977505300496
+      type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300497
+      type: {class: PatrolState, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300498
+      type: {class: HasTargetBlackboardCondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300499
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 4531773977505300500
+    - rid: 4531773977505300500
+      type: {class: HasTargetBlackboardCondition, ns: Game.Engine.AI, asm: Engine}
 --- !u!1 &1840973718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6231128803804570049, guid: d142312d175c444e78638fb66130f8aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

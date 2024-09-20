@@ -26,21 +26,22 @@ namespace Game.Content
         private AttackComponent _attackComponent;
 
         private Animator _animator;
-        private AnimatorDispatcher _dispatcher;
+        private AnimatorDispatcher _animatorDispatcher;
 
         private int extraLayer;
 
         private void Awake()
         {
             _animator = this.GetComponent<Animator>();
-            _dispatcher = this.GetComponent<AnimatorDispatcher>();
-            extraLayer = _animator.GetLayerIndex(EXTRA_LAYER);
+            this.extraLayer = _animator.GetLayerIndex(EXTRA_LAYER);
+
+            _animatorDispatcher = this.GetComponent<AnimatorDispatcher>();
         }
 
         private void OnEnable()
         {
-            _dispatcher.AddListener(MELEE_ANIM_EVENT, this.OnMeleeAttack);
-            _dispatcher.AddListener(RANGE_ANIM_EVENT, this.OnRangeAttack);
+            _animatorDispatcher.AddListener(MELEE_ANIM_EVENT, this.OnMeleeAttack);
+            _animatorDispatcher.AddListener(RANGE_ANIM_EVENT, this.OnRangeAttack);
 
             _switchWeaponComponent.OnSwitched += this.OnSwitchWeapon;
             _attackComponent.OnAttack += this.OnRequestAttack;
@@ -48,8 +49,8 @@ namespace Game.Content
 
         private void OnDisable()
         {
-            _dispatcher.RemoveListener(MELEE_ANIM_EVENT, this.OnMeleeAttack);
-            _dispatcher.RemoveListener(RANGE_ANIM_EVENT, this.OnRangeAttack);
+            _animatorDispatcher.RemoveListener(MELEE_ANIM_EVENT, this.OnMeleeAttack);
+            _animatorDispatcher.RemoveListener(RANGE_ANIM_EVENT, this.OnRangeAttack);
 
             _switchWeaponComponent.OnSwitched -= this.OnSwitchWeapon;
             _attackComponent.OnAttack -= this.OnRequestAttack;

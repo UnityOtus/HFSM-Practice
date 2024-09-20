@@ -7,7 +7,8 @@
         "Modules.AI.Blackboard",
         "Atomic.AI.StateMachine",
         "Atomic.AI.Behaviours",
-        "Atomic.AI.Gizmos"
+        "Atomic.AI.Gizmos",
+        "Atomic.AI.Elements"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

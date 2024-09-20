@@ -72,6 +72,11 @@ namespace Atomic.AI
 
         internal void Perform(IBlackboard blackboard)
         {
+            if (this.actions == null)
+            {
+                return;
+            }
+            
             int count = this.actions.Length;
             if (count == 0)
             {

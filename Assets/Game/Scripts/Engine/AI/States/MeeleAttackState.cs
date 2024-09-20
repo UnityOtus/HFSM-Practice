@@ -1,16 +1,14 @@
-using System;
+﻿using System;
 using Atomic.AI;
 using UnityEngine;
 
 namespace Game.Engine.AI
 {
     [Serializable]
-    public sealed class AttackState : IState
+    public sealed class MeleeAttackState : IState
     {
-        public string Name => _name;
-        [SerializeField] [BlackboardKey] private int _attackDistanceKey;
-        [SerializeField] private string _name;
-        
+        public string Name => nameof(MeleeAttackState);
+
         public void OnEnter(IBlackboard blackboard)
         {
             blackboard.GetCharacter().GetComponent<MoveComponent>().Stop();
@@ -25,7 +23,7 @@ namespace Game.Engine.AI
         {
             GameObject character = blackboard.GetCharacter();
 
-            if (!blackboard.TryGetTarget(out GameObject target))
+            if (!blackboard.TryGetTarget(out GameObject target) || target == null)
             {
                 character.GetComponent<MoveComponent>().Stop();
                 return;
@@ -42,7 +40,7 @@ namespace Game.Engine.AI
             Vector2 distanceVector = targetPosition - currentPosition;
             
             float targetDirection = Mathf.Sign(distanceVector.x);
-            float attackDistance = blackboard.GetFloat(_attackDistanceKey);
+            float attackDistance = blackboard.GetAttackDistance();
             
             bool targetNotReached = distanceVector.sqrMagnitude > attackDistance * attackDistance;
             if (targetNotReached)

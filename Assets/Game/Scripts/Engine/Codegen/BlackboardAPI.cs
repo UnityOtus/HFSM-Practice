@@ -19,6 +19,8 @@ namespace Atomic.AI
         public const int AttackDistance = 7; // float
         public const int Target = 8; // GameObject : class
         public const int ExclamationView = 9; // GameObject : class
+        public const int MeleeDistance = 10; // float
+        public const int RangeDistance = 11; // float
 
 
         ///Extensions
@@ -164,6 +166,38 @@ namespace Atomic.AI
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool DelExclamationView(this IBlackboard obj) => obj.DelObject(ExclamationView);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasMeleeDistance(this IBlackboard obj) => obj.HasFloat(MeleeDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float GetMeleeDistance(this IBlackboard obj) => obj.GetFloat(MeleeDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetMeleeDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(MeleeDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetMeleeDistance(this IBlackboard obj, float value) => obj.SetFloat(MeleeDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelMeleeDistance(this IBlackboard obj) => obj.DelFloat(MeleeDistance);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasRangeDistance(this IBlackboard obj) => obj.HasFloat(RangeDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float GetRangeDistance(this IBlackboard obj) => obj.GetFloat(RangeDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetRangeDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(RangeDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetRangeDistance(this IBlackboard obj, float value) => obj.SetFloat(RangeDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelRangeDistance(this IBlackboard obj) => obj.DelFloat(RangeDistance);
 
     }
 }

@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &19521655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2710101867968874339, guid: d142312d175c444e78638fb66130f8aa, type: 3}
+  m_PrefabInstance: {fileID: 1691527713771884024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &32830389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1593,6 +1598,9 @@ MonoBehaviour:
         - rid: 4531773977505300556
     - rid: 4531773977505300554
       type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+      data:
+        _attackDistanceKey: 7
+        _name: 
     - rid: 4531773977505300555
       type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
       data:
@@ -1601,6 +1609,301 @@ MonoBehaviour:
       type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
       data:
         show: 0
+--- !u!1 &2104951493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2104951494}
+  - component: {fileID: 2104951498}
+  - component: {fileID: 2104951497}
+  - component: {fileID: 2104951496}
+  - component: {fileID: 2104951495}
+  m_Layer: 8
+  m_Name: AI Captain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2104951494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104951493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2488139284664927512}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2104951495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104951493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9141f55fc7ad4bdb814549cf83e5eecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 2104951498}
+  gizmoses:
+  - rid: 7170861374356324362
+  drawGizmos: 1
+  drawSelected: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7170861374356324362
+      type: {class: SensorDataGizmos, ns: Game.Engine.AI, asm: Engine}
+      data:
+        color: {r: 1, g: 0, b: 1, a: 1}
+--- !u!114 &2104951496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104951493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c8593d15742eab762702a74cf4870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 2104951498}
+  initialState:
+    rid: 4531773977505300546
+  controlState: 1
+  updateMode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300546
+      type: {class: StateMachine, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Root
+        behaviours: []
+        enterActions: []
+        exitActions: []
+        currentState: 0
+        states:
+        - rid: 4531773977505300547
+        - rid: 7170861374356324352
+        transitions:
+        - sourceState: 0
+          targetState: 1
+          conditions:
+          - rid: 4531773977505300549
+          actions: []
+        - sourceState: 1
+          targetState: 0
+          conditions:
+          - rid: 4531773977505300550
+          actions: []
+    - rid: 4531773977505300547
+      type: {class: PatrolState, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300549
+      type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300550
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 4531773977505300551
+    - rid: 4531773977505300551
+      type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 7170861374356324352
+      type: {class: StateMachine, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Attack State
+        behaviours: []
+        enterActions:
+        - rid: 7170861374356324365
+        exitActions:
+        - rid: 7170861374356324367
+        currentState: 0
+        states:
+        - rid: 7170861374356324385
+        - rid: 7170861374356324386
+        transitions:
+        - sourceState: 0
+          targetState: 1
+          conditions:
+          - rid: 7170861374356324357
+          - rid: 7170861374356324383
+          actions:
+          - rid: 7170861374356324364
+        - sourceState: 1
+          targetState: 0
+          conditions:
+          - rid: 7170861374356324372
+          actions:
+          - rid: 7170861374356324363
+    - rid: 7170861374356324357
+      type: {class: HasChargesAICondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 7170861374356324363
+      type: {class: SwitchToMeleeWeaponAIAction, ns: Game.Engine.AI, asm: Engine}
+    - rid: 7170861374356324364
+      type: {class: SwitchToRangedWeaponAIAction, ns: Game.Engine.AI, asm: Engine}
+    - rid: 7170861374356324365
+      type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
+      data:
+        show: 1
+    - rid: 7170861374356324367
+      type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
+      data:
+        show: 0
+    - rid: 7170861374356324372
+      type: {class: OrBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        conditions:
+        - rid: 7170861374356324377
+        - rid: 7170861374356324375
+    - rid: 7170861374356324375
+      type: {class: InMeleeRangeAICondition, ns: Game.Engine.AI, asm: Engine}
+      data:
+        _distanceKey: 10
+    - rid: 7170861374356324377
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 7170861374356324378
+    - rid: 7170861374356324378
+      type: {class: HasChargesAICondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 7170861374356324383
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 7170861374356324384
+    - rid: 7170861374356324384
+      type: {class: InMeleeRangeAICondition, ns: Game.Engine.AI, asm: Engine}
+      data:
+        _distanceKey: 10
+    - rid: 7170861374356324385
+      type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+      data:
+        _attackDistanceKey: 10
+        _name: Melee
+    - rid: 7170861374356324386
+      type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+      data:
+        _attackDistanceKey: 11
+        _name: Range
+--- !u!114 &2104951497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104951493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb358209d55a48fa85f050561a0aa4a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 2104951498}
+  initialBehaviours:
+  - rid: 4531773977505300530
+  - rid: 4531773977505300531
+  controlState: 1
+  updateMode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300530
+      type: {class: ColliderSensor, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300531
+      type: {class: TargetSelectReasoner, ns: Game.Engine.AI, asm: Engine}
+--- !u!114 &2104951498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104951493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09c0b93b7484545a4777c934e99a69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  installers:
+  - rid: 4531773977505300533
+  - rid: 4531773977505300528
+  - rid: 4531773977505300529
+  - rid: 4531773977505300539
+  - rid: 4531773977505300540
+  - rid: 4531773977505300541
+  - rid: 4531773977505300544
+  - rid: 4531773977505300552
+  - rid: 7170861374356324387
+  - rid: 7170861374356324388
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300528
+      type: {class: ColliderBufferInstaller, ns: Game.Engine.AI, asm: Engine}
+      data:
+        initialSize: 4
+    - rid: 4531773977505300529
+      type: {class: SensorDataInstaller, ns: Game.Engine.AI, asm: Engine}
+      data:
+        sensorData:
+          center: {fileID: 2104951494}
+          radius: 3
+          layerMask:
+            serializedVersion: 2
+            m_Bits: 384
+    - rid: 4531773977505300533
+      type: {class: GameObjectInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 1
+        value: {fileID: 1805414527924857425}
+    - rid: 4531773977505300539
+      type: {class: TransformArrayInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 4
+        value:
+        - {fileID: 1904121577}
+        - {fileID: 2022502902}
+    - rid: 4531773977505300540
+      type: {class: IntInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 5
+        value: 0
+    - rid: 4531773977505300541
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 6
+        value: 0.25
+    - rid: 4531773977505300544
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 7
+        value: 1
+    - rid: 4531773977505300552
+      type: {class: GameObjectInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 9
+        value: {fileID: 19521655}
+    - rid: 7170861374356324387
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 10
+        value: 1
+    - rid: 7170861374356324388
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 11
+        value: 5
 --- !u!1 &665628204057000200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5479154774684278057, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
@@ -1614,6 +1917,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840973719}
     m_Modifications:
+    - target: {fileID: 4386573375071072301, guid: d142312d175c444e78638fb66130f8aa, type: 3}
+      propertyPath: charges
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4935866766678847130, guid: d142312d175c444e78638fb66130f8aa, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1668,7 +1975,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4935866766678847130, guid: d142312d175c444e78638fb66130f8aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2104951494}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d142312d175c444e78638fb66130f8aa, type: 3}
 --- !u!1 &1805414527924857425 stripped

@@ -1,16 +1,14 @@
-using System;
+﻿using System;
 using Atomic.AI;
 using UnityEngine;
 
 namespace Game.Engine.AI
 {
     [Serializable]
-    public sealed class AttackState : IState
+    public sealed class RangeAttackState : IState
     {
-        public string Name => _name;
-        [SerializeField] [BlackboardKey] private int _attackDistanceKey;
-        [SerializeField] private string _name;
-        
+        public string Name => nameof(RangeAttackState);
+
         public void OnEnter(IBlackboard blackboard)
         {
             blackboard.GetCharacter().GetComponent<MoveComponent>().Stop();
@@ -25,7 +23,7 @@ namespace Game.Engine.AI
         {
             GameObject character = blackboard.GetCharacter();
 
-            if (!blackboard.TryGetTarget(out GameObject target))
+            if (!blackboard.TryGetTarget(out GameObject target) || target == null)
             {
                 character.GetComponent<MoveComponent>().Stop();
                 return;
@@ -42,19 +40,9 @@ namespace Game.Engine.AI
             Vector2 distanceVector = targetPosition - currentPosition;
             
             float targetDirection = Mathf.Sign(distanceVector.x);
-            float attackDistance = blackboard.GetFloat(_attackDistanceKey);
             
-            bool targetNotReached = distanceVector.sqrMagnitude > attackDistance * attackDistance;
-            if (targetNotReached)
-            {
-                character.GetComponent<MoveComponent>().CurrentDirection = targetDirection;
-            }
-            else
-            {
-                character.GetComponent<MoveComponent>().Stop();
-                character.GetComponent<LookComponent>().CurrentDirection = targetDirection;
-                character.GetComponent<AttackComponent>().Attack();
-            }
+            character.GetComponent<LookComponent>().CurrentDirection = targetDirection;
+            character.GetComponent<AttackComponent>().Attack();
         }
     }
 }

@@ -1,48 +1,29 @@
-using Atomic.Objects;
 using Game.Engine;
 using UnityEngine;
 
 namespace Game.Content
 {
-    [Is(ObjectType.Character)]
-    public sealed class Dummy : AtomicObject
+    public sealed class Dummy : MonoBehaviour
     {
-        [Get(CommonAPI.Transform)]
-        public new Transform transform;
+        [SerializeField]
+        private DeathComponent _deathComponent;
         
-        [Section]
-        public HealthComponent healthComponent;
-
-        public new Collider2D collider;
-
-        public Animator animator;
-
-        private void Awake()
-        {
-            this.Compose();
-            this.healthComponent.Compose();
-            this.healthComponent.DeathEvent.Subscribe(() => this.collider.enabled = false);
-            this.healthComponent.DamageEvent.Subscribe(_ =>
-            {
-                if (this.healthComponent.IsAlive.Value)
-                {
-                    this.animator.Play("TakeDamage", -1, -0);
-                }
-            });
-            this.healthComponent.DeathEvent.Subscribe(() =>
-            {
-                this.animator.Play("Destroy", -1, 0);
-            });
-        }
-
+        [SerializeField]
+        private Collider2D _collider;
+        
         private void OnEnable()
         {
-            this.healthComponent.OnEnable();
+            _deathComponent.OnDeath += this.OnDeath;
         }
 
         private void OnDisable()
         {
-            this.healthComponent.OnDisable();
+            _deathComponent.OnDeath -= this.OnDeath;
+        }
+
+        private void OnDeath()
+        {
+            _collider.enabled = false;
         }
     }
 }

@@ -9,9 +9,16 @@ namespace Game.Engine
         [SerializeField]
         private int damage;
 
+        private AndCondition conditions = new();
+
+        public void AddCondition(Func<bool> condition)
+        {
+            this.conditions.AddCondition(condition);
+        }
+
         public bool DealDamage(GameObject target)
         {
-            if (target.TryGetComponent(out TakeDamageComponent damageComponent))
+            if (this.conditions.Invoke() && target.TryGetComponent(out TakeDamageComponent damageComponent))
             {
                 return damageComponent.TakeDamage(this.damage);
             }

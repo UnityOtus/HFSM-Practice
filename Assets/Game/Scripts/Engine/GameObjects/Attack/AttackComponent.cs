@@ -1,43 +1,34 @@
 using System;
-using Atomic.Elements;
-using Atomic.Objects;
 using UnityEngine;
 
 namespace Game.Engine
 {
     [Serializable]
-    public sealed class AttackComponent : IDisposable
+    public sealed class AttackComponent : MonoBehaviour
     {
-        [Get(AttackAPI.AttackRequest)]
-        public IAtomicAction AttackRequest => this.attackRequest; 
-       
-        public IAtomicObservable AttackEvent => this.attackEvent;
-       
-        public IAtomicExpression<bool> AttackCondition => this.attackCondition;
+        public event Action OnAttack;
 
-        [SerializeField]
-        private AtomicAction attackRequest;
-        
-        [SerializeField]
-        private AtomicEvent attackEvent;
+        private readonly AndCondition attackCondition = new();
 
-        [SerializeField]
-        private AndCondition attackCondition;
-        
-        public void Compose()
+        private Action attackAction;
+
+        public void AddCondition(Func<bool> condition)
         {
-            this.attackRequest.Compose(() =>
-            {
-                if (this.attackCondition.Invoke())
-                {
-                    this.attackEvent?.Invoke();
-                }
-            });
+            this.attackCondition.AddCondition(condition);
         }
 
-        public void Dispose()
+        public void AddAction(Action action)
         {
-            this.attackEvent?.Dispose();
+            this.attackAction += action;
+        }
+
+        public void Attack()
+        {
+            if (this.attackCondition.Invoke())
+            {
+                this.attackAction.Invoke();
+                this.OnAttack?.Invoke();
+            }
         }
     }
 }

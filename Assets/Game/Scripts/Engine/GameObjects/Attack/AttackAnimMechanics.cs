@@ -1,44 +1,34 @@
-using Atomic.Behaviours;
-using Atomic.Elements;
 using UnityEngine;
 
 namespace Game.Engine
 {
-    public sealed class AttackAnimMechanics : IEnable, IDisable
+    [RequireComponent(typeof(Animator))]
+    public sealed class AttackAnimMechanics : MonoBehaviour
     {
         private static readonly int Attack = Animator.StringToHash("Attack");
 
-        private readonly Animator animator;
-        private readonly IAtomicObservable attackEvent;
-        private readonly int attackHash;
+        private Animator _animator;
+        private AttackComponent _attackComponent;
 
-        public AttackAnimMechanics(Animator animator, IAtomicObservable attackEvent)
+        private void Awake()
         {
-            this.animator = animator;
-            this.attackEvent = attackEvent;
-            this.attackHash = Attack;
-        }
-        
-        public AttackAnimMechanics(Animator animator, IAtomicObservable attackEvent, int attackHash)
-        {
-            this.animator = animator;
-            this.attackEvent = attackEvent;
-            this.attackHash = attackHash;
+            _animator = this.GetComponent<Animator>();
+            _attackComponent = this.GetComponent<AttackComponent>();
         }
 
-        public void Enable()
+        private void OnEnable()
         {
-            this.attackEvent.Subscribe(this.OnAttack);
+            _attackComponent.OnAttack += this.OnAttack;
         }
 
-        public void Disable()
+        private void OnDisable()
         {
-            this.attackEvent.Unsubscribe(this.OnAttack);
+            _attackComponent.OnAttack -= this.OnAttack;
         }
 
         private void OnAttack()
         {
-            this.animator.SetTrigger(this.attackHash);
+            _animator.SetTrigger(Attack);
         }
     }
 }

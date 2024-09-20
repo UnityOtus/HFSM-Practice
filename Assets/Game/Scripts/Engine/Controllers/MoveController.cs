@@ -1,17 +1,12 @@
-using Atomic.Elements;
 using UnityEngine;
 
 namespace Game.Engine
 {
-    public sealed class MoveController
+    public sealed class MoveController : MonoBehaviour
     {
-        private readonly IAtomicSetter<float> moveDirection;
-
-        public MoveController(IAtomicSetter<float> moveDirection)
-        {
-            this.moveDirection = moveDirection;
-        }
-
+        [SerializeField]
+        private GameObject _character;
+        
         public void Update()
         {
             float moveDirection = 0;
@@ -25,9 +20,9 @@ namespace Game.Engine
                 moveDirection = 1;
             }
 
-            if (this.moveDirection != null)
+            if (_character != null && _character.TryGetComponent(out MoveComponent moveComponent))
             {
-                this.moveDirection.Value = moveDirection;
+                moveComponent.MoveDirection = moveDirection;
             }
         }
     }

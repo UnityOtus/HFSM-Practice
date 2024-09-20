@@ -32,6 +32,21 @@ MonoBehaviour:
   - id: 3
     name: ColliderBuffer
     type: 'BufferData<Collider2D> : struct'
+  - id: 4
+    name: Waypoints
+    type: 'Transform[] : class'
+  - id: 5
+    name: WaypointIndex
+    type: int
+  - id: 6
+    name: StoppingDistance
+    type: float
+  - id: 7
+    name: AttackDistance
+    type: float
   - id: 8
     name: Target
+    type: 'GameObject : class'
+  - id: 9
+    name: ExclamationView
     type: 'GameObject : class'

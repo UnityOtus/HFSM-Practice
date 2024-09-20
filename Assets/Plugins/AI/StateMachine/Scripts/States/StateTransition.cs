@@ -85,7 +85,7 @@ namespace Atomic.AI
 
             for (int i = 0; i < count; i++)
             {
-                var action = this.actions[i];
+                IBlackboardAction action = this.actions[i];
                 action.Invoke(blackboard);
             }
         }

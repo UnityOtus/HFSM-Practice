@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5129113035035746949, guid: b535f41cc0dee4d449bd518d3160d1e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1058216
+      value: -4.06
       objectReference: {fileID: 0}
     - target: {fileID: 5129113035035746949, guid: b535f41cc0dee4d449bd518d3160d1e3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -797,7 +797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &985800779
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,6 +1339,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5041756459921393077, guid: a358f183e04cd4930a3f6b6d55b73e66, type: 3}
   m_PrefabInstance: {fileID: 1973829779}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1987025054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1764585304394008490, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
+  m_PrefabInstance: {fileID: 3120722835686227897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2022502901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1386,7 @@ GameObject:
   - component: {fileID: 2073626625}
   - component: {fileID: 2073626626}
   - component: {fileID: 2073626627}
+  - component: {fileID: 2073626630}
   - component: {fileID: 2073626629}
   m_Layer: 8
   m_Name: AI
@@ -1420,6 +1426,11 @@ MonoBehaviour:
   - rid: 4531773977505300533
   - rid: 4531773977505300528
   - rid: 4531773977505300529
+  - rid: 4531773977505300539
+  - rid: 4531773977505300540
+  - rid: 4531773977505300541
+  - rid: 4531773977505300544
+  - rid: 4531773977505300552
   references:
     version: 2
     RefIds:
@@ -1441,6 +1452,33 @@ MonoBehaviour:
       data:
         key: 1
         value: {fileID: 665628204057000200}
+    - rid: 4531773977505300539
+      type: {class: TransformArrayInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 4
+        value:
+        - {fileID: 1904121577}
+        - {fileID: 2022502902}
+    - rid: 4531773977505300540
+      type: {class: IntInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 5
+        value: 0
+    - rid: 4531773977505300541
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 6
+        value: 0.25
+    - rid: 4531773977505300544
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 7
+        value: 1
+    - rid: 4531773977505300552
+      type: {class: GameObjectInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 9
+        value: {fileID: 1987025054}
 --- !u!114 &2073626627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1528,79 @@ MonoBehaviour:
       type: {class: SensorDataGizmos, ns: Game.Engine.AI, asm: Engine}
       data:
         color: {r: 1, g: 0, b: 1, a: 1}
+--- !u!114 &2073626630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073626624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c8593d15742eab762702a74cf4870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 2073626626}
+  initialState:
+    rid: 4531773977505300546
+  controlState: 1
+  updateMode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300546
+      type: {class: StateMachine, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Root
+        behaviours: []
+        enterActions: []
+        exitActions: []
+        currentState: 0
+        states:
+        - rid: 4531773977505300547
+        - rid: 4531773977505300553
+        transitions:
+        - sourceState: 0
+          targetState: 1
+          conditions:
+          - rid: 4531773977505300549
+          actions: []
+        - sourceState: 1
+          targetState: 0
+          conditions:
+          - rid: 4531773977505300550
+          actions: []
+    - rid: 4531773977505300547
+      type: {class: PatrolState, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300549
+      type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300550
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 4531773977505300551
+    - rid: 4531773977505300551
+      type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300553
+      type: {class: State, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Attack
+        behaviours:
+        - rid: 4531773977505300554
+        enterActions:
+        - rid: 4531773977505300555
+        exitActions:
+        - rid: 4531773977505300556
+    - rid: 4531773977505300554
+      type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+    - rid: 4531773977505300555
+      type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
+      data:
+        show: 1
+    - rid: 4531773977505300556
+      type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
+      data:
+        show: 0
 --- !u!1 &665628204057000200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5479154774684278057, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
@@ -1509,7 +1620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4935866766678847130, guid: d142312d175c444e78638fb66130f8aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9241781
+      value: -2.31
       objectReference: {fileID: 0}
     - target: {fileID: 4935866766678847130, guid: d142312d175c444e78638fb66130f8aa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1553,7 +1664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6231128803804570049, guid: d142312d175c444e78638fb66130f8aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1578,6 +1689,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840973719}
     m_Modifications:
+    - target: {fileID: 1764585304394008490, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5479154774684278057, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
       propertyPath: m_Name
       value: Pirate

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10f62366b8b4b15b1bf35e2b066b073, type: 3}
   m_Name: BlackboardConfig
   m_EditorClassIdentifier: 
+  Namespace: Atomic.AI
   directoryPath: Assets/Game/Scripts/Engine/Codegen
   className: BlackboardAPI
-  namespaces:
+  imports:
   - Game.Engine
-  - Atomic.Objects
   - UnityEngine
   - Game.Engine.AI
   keys:
@@ -25,28 +25,13 @@ MonoBehaviour:
     type: 
   - id: 1
     name: Character
-    type: 'IAtomicObject : class'
+    type: 'GameObject : class'
   - id: 2
-    name: ExclamationPoint
-    type: 'GameObject : class'
+    name: SensorData
+    type: 'SensorData : struct'
   - id: 3
-    name: Otus
-    type: 'GameObject : class'
-  - id: 4
-    name: StoppingDistance
-    type: float
-  - id: 6
-    name: Target
-    type: 'IAtomicObject : class'
-  - id: 9
-    name: CollidersBuffer
+    name: ColliderBuffer
     type: 'BufferData<Collider2D> : struct'
-  - id: 12
-    name: PatrolData
-    type: 'PatrolData : struct'
-  - id: 13
-    name: AttackData
-    type: 'AttackData : struct'
-  - id: 14
-    name: CircleSensorData
-    type: 'CircleSensorData : struct'
+  - id: 4
+    name: Target
+    type: 'GameObject : class'

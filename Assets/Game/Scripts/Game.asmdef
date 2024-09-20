@@ -1,0 +1,21 @@
+{
+    "name": "Engine",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Mathematics",
+        "Unity.Burst",
+        "Modules.AI.Blackboard",
+        "Atomic.AI.StateMachine",
+        "Atomic.AI.Behaviours",
+        "Atomic.AI.Gizmos"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -41,5 +41,10 @@ namespace Game.Engine
         {
             return this.Current > 0;
         }
+
+        public bool IsNotAlive()
+        {
+            return this.Current <= 0;
+        }
     }
 }

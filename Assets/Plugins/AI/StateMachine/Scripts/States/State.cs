@@ -8,7 +8,7 @@ namespace Atomic.AI
 {
     [MovedFrom(true, "Modules.AI", "Modules.AI.StateMachine")]
     [Serializable]
-    public class State : IState, ISerializationCallbackReceiver
+    public class State : IState
     {
         public virtual string Name => this.name;
 
@@ -19,8 +19,6 @@ namespace Atomic.AI
         [Header("Behaviours")]
         [SerializeReference]
         private IAIBehaviour[] behaviours = default;
-        
-        private List<IAIUpdate> updateBehaviours;
 
         [Header("Actions")]
         [SerializeReference]
@@ -78,21 +76,17 @@ namespace Atomic.AI
 
         private void UpdateBehaviours(IBlackboard blackboard, float deltaTime)
         {
-            if (this.updateBehaviours == null)
+            if (this.behaviours == null)
             {
                 return;
             }
 
-            int count = this.updateBehaviours.Count;
-            if (count == 0)
+            for (int i = 0, count = this.behaviours.Length; i < count; i++)
             {
-                return;
-            }
-
-            for (int i = 0; i < count; i++)
-            {
-                IAIUpdate behaviour = updateBehaviours[i];
-                behaviour.OnUpdate(blackboard, deltaTime);
+                if (this.behaviours[i] is IAIUpdate updateBehaviour)
+                {
+                    updateBehaviour.OnUpdate(blackboard, deltaTime);
+                }
             }
         }
 
@@ -141,33 +135,6 @@ namespace Atomic.AI
         public override string ToString()
         {
             return this.name;
-        }
-
-        void ISerializationCallbackReceiver.OnAfterDeserialize()
-        {
-            this.InitBehaviours();
-        }
-
-        void ISerializationCallbackReceiver.OnBeforeSerialize()
-        {
-        }
-
-        private void InitBehaviours()
-        {
-            this.updateBehaviours = new List<IAIUpdate>();
-
-            if (this.behaviours == null)
-            {
-                return;
-            }
-
-            for (int i = 0, count = this.behaviours.Length; i < count; i++)
-            {
-                if (this.behaviours[i] is IAIUpdate updateBehaviour)
-                {
-                    this.updateBehaviours.Add(updateBehaviour);
-                }
-            }
         }
     }
 }

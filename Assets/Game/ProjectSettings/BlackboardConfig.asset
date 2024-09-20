@@ -42,7 +42,7 @@ MonoBehaviour:
     name: StoppingDistance
     type: float
   - id: 7
-    name: AttackDistance
+    name: CurrentAttackDistance
     type: float
   - id: 8
     name: Target
@@ -50,3 +50,6 @@ MonoBehaviour:
   - id: 9
     name: ExclamationView
     type: 'GameObject : class'
+  - id: 10
+    name: AmmoAmount
+    type: int

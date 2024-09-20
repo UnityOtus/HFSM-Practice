@@ -40,7 +40,7 @@ namespace Game.Engine.AI
             Vector2 distanceVector = targetPosition - currentPosition;
             
             float targetDirection = Mathf.Sign(distanceVector.x);
-            float attackDistance = blackboard.GetAttackDistance();
+            float attackDistance = blackboard.GetCurrentAttackDistance();
             
             bool targetNotReached = distanceVector.sqrMagnitude > attackDistance * attackDistance;
             if (targetNotReached)

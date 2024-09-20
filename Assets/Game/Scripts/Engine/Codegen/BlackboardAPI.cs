@@ -16,9 +16,11 @@ namespace Atomic.AI
         public const int Waypoints = 4; // Transform[] : class
         public const int WaypointIndex = 5; // int
         public const int StoppingDistance = 6; // float
-        public const int AttackDistance = 7; // float
+        public const int CurrentAttackDistance = 7; // float
         public const int Target = 8; // GameObject : class
         public const int ExclamationView = 9; // GameObject : class
+        public const int MeleeAttackDistance = 11; // float
+        public const int RangeAttackDistance = 12; // float
 
 
         ///Extensions
@@ -119,19 +121,19 @@ namespace Atomic.AI
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool HasAttackDistance(this IBlackboard obj) => obj.HasFloat(AttackDistance);
+		public static bool HasCurrentAttackDistance(this IBlackboard obj) => obj.HasFloat(CurrentAttackDistance);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static float GetAttackDistance(this IBlackboard obj) => obj.GetFloat(AttackDistance);
+		public static float GetCurrentAttackDistance(this IBlackboard obj) => obj.GetFloat(CurrentAttackDistance);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryGetAttackDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(AttackDistance, out value);
+		public static bool TryGetCurrentAttackDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(CurrentAttackDistance, out value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetAttackDistance(this IBlackboard obj, float value) => obj.SetFloat(AttackDistance, value);
+		public static void SetCurrentAttackDistance(this IBlackboard obj, float value) => obj.SetFloat(CurrentAttackDistance, value);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool DelAttackDistance(this IBlackboard obj) => obj.DelFloat(AttackDistance);
+		public static bool DelCurrentAttackDistance(this IBlackboard obj) => obj.DelFloat(CurrentAttackDistance);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -164,6 +166,38 @@ namespace Atomic.AI
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool DelExclamationView(this IBlackboard obj) => obj.DelObject(ExclamationView);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasMeleeAttackDistance(this IBlackboard obj) => obj.HasFloat(MeleeAttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float GetMeleeAttackDistance(this IBlackboard obj) => obj.GetFloat(MeleeAttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetMeleeAttackDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(MeleeAttackDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetMeleeAttackDistance(this IBlackboard obj, float value) => obj.SetFloat(MeleeAttackDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelMeleeAttackDistance(this IBlackboard obj) => obj.DelFloat(MeleeAttackDistance);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasRangeAttackDistance(this IBlackboard obj) => obj.HasFloat(RangeAttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float GetRangeAttackDistance(this IBlackboard obj) => obj.GetFloat(RangeAttackDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetRangeAttackDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(RangeAttackDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetRangeAttackDistance(this IBlackboard obj, float value) => obj.SetFloat(RangeAttackDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelRangeAttackDistance(this IBlackboard obj) => obj.DelFloat(RangeAttackDistance);
 
     }
 }

@@ -286,13 +286,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204224398}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &396337561
 PrefabInstance:
@@ -518,13 +518,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.6, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &627320052
 PrefabInstance:
@@ -759,6 +759,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902084368}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -777,7 +778,6 @@ Transform:
   - {fileID: 1229142586}
   - {fileID: 1442669684}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &985800778
 GameObject:
@@ -805,13 +805,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985800778}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &985800780
 MonoBehaviour:
@@ -1062,6 +1062,300 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5041756459921393077, guid: a358f183e04cd4930a3f6b6d55b73e66, type: 3}
   m_PrefabInstance: {fileID: 1442669683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1742032273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1742032274}
+  - component: {fileID: 1742032278}
+  - component: {fileID: 1742032277}
+  - component: {fileID: 1742032276}
+  - component: {fileID: 1742032275}
+  m_Layer: 8
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1742032274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742032273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2488139284664927512}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1742032275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742032273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9141f55fc7ad4bdb814549cf83e5eecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 1742032278}
+  gizmoses:
+  - rid: 4531773977505300532
+  drawGizmos: 1
+  drawSelected: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300532
+      type: {class: SensorDataGizmos, ns: Game.Engine.AI, asm: Engine}
+      data:
+        color: {r: 1, g: 0, b: 1, a: 1}
+--- !u!114 &1742032276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742032273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c8593d15742eab762702a74cf4870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 1742032278}
+  initialState:
+    rid: 4531773977505300546
+  controlState: 1
+  updateMode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1018901402289963009
+      type: {class: StateMachine, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Attack
+        behaviours:
+        - rid: 1018901402289963018
+        enterActions:
+        - rid: 1018901402289963011
+        exitActions:
+        - rid: 1018901402289963012
+        currentState: 1
+        states:
+        - rid: 1018901402289963013
+        - rid: 1018901402289963014
+        transitions:
+        - sourceState: 0
+          targetState: 1
+          conditions:
+          - rid: 1018901402289963015
+          - rid: 1018901402289963019
+          actions: []
+        - sourceState: 1
+          targetState: 0
+          conditions:
+          - rid: 1018901402289963022
+          actions: []
+    - rid: 1018901402289963011
+      type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
+      data:
+        show: 1
+    - rid: 1018901402289963012
+      type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
+      data:
+        show: 0
+    - rid: 1018901402289963013
+      type: {class: MeleeState, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 1018901402289963014
+      type: {class: RangeState, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 1018901402289963015
+      type: {class: HasAmmoAICondition, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 1018901402289963018
+      type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 1018901402289963019
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 1018901402289963020
+    - rid: 1018901402289963020
+      type: {class: IsTargetInMeleeRange, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 1018901402289963022
+      type: {class: OrBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        conditions:
+        - rid: 1018901402289963023
+        - rid: 1018901402289963025
+    - rid: 1018901402289963023
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 1018901402289963024
+    - rid: 1018901402289963024
+      type: {class: HasAmmoAICondition, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 1018901402289963025
+      type: {class: IsTargetInMeleeRange, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 4531773977505300546
+      type: {class: StateMachine, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
+      data:
+        name: Root
+        behaviours: []
+        enterActions: []
+        exitActions: []
+        currentState: 0
+        states:
+        - rid: 4531773977505300547
+        - rid: 1018901402289963009
+        transitions:
+        - sourceState: 0
+          targetState: 1
+          conditions:
+          - rid: 4531773977505300549
+          actions: []
+        - sourceState: 1
+          targetState: 0
+          conditions:
+          - rid: 4531773977505300550
+          actions: []
+    - rid: 4531773977505300547
+      type: {class: PatrolState, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 4531773977505300549
+      type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 4531773977505300550
+      type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
+      data:
+        condition:
+          rid: 4531773977505300551
+    - rid: 4531773977505300551
+      type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+      data: 
+--- !u!114 &1742032277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742032273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb358209d55a48fa85f050561a0aa4a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 1742032278}
+  initialBehaviours:
+  - rid: 4531773977505300530
+  - rid: 4531773977505300531
+  controlState: 1
+  updateMode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4531773977505300530
+      type: {class: ColliderSensor, ns: Game.Engine.AI, asm: Engine}
+      data: 
+    - rid: 4531773977505300531
+      type: {class: TargetSelectReasoner, ns: Game.Engine.AI, asm: Engine}
+      data: 
+--- !u!114 &1742032278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742032273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09c0b93b7484545a4777c934e99a69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  installers:
+  - rid: 4531773977505300533
+  - rid: 4531773977505300528
+  - rid: 4531773977505300529
+  - rid: 4531773977505300539
+  - rid: 4531773977505300540
+  - rid: 4531773977505300541
+  - rid: 4531773977505300544
+  - rid: 4531773977505300552
+  - rid: 1018901402289963026
+  - rid: 1018901402289963027
+  references:
+    version: 2
+    RefIds:
+    - rid: 1018901402289963026
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 11
+        value: 1
+    - rid: 1018901402289963027
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 12
+        value: 5
+    - rid: 4531773977505300528
+      type: {class: ColliderBufferInstaller, ns: Game.Engine.AI, asm: Engine}
+      data:
+        initialSize: 4
+    - rid: 4531773977505300529
+      type: {class: SensorDataInstaller, ns: Game.Engine.AI, asm: Engine}
+      data:
+        sensorData:
+          center: {fileID: 1742032274}
+          radius: 10
+          layerMask:
+            serializedVersion: 2
+            m_Bits: 384
+    - rid: 4531773977505300533
+      type: {class: GameObjectInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 1
+        value: {fileID: 1805414527924857425}
+    - rid: 4531773977505300539
+      type: {class: TransformArrayInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 4
+        value:
+        - {fileID: 1904121577}
+        - {fileID: 2022502902}
+    - rid: 4531773977505300540
+      type: {class: IntInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 5
+        value: 0
+    - rid: 4531773977505300541
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 6
+        value: 0.25
+    - rid: 4531773977505300544
+      type: {class: FloatInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 7
+        value: 5
+    - rid: 4531773977505300552
+      type: {class: GameObjectInstaller, ns: Atomic.AI, asm: Modules.AI.Blackboard}
+      data:
+        key: 9
+        value: {fileID: 2097825705}
 --- !u!1001 &1797530558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1155,6 +1449,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840973718}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.644178, y: -7.0124016, z: -0.06407688}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1166,7 +1461,6 @@ Transform:
   - {fileID: 124929165}
   - {fileID: 2488139284664927512}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1873473423
 PrefabInstance:
@@ -1261,13 +1555,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904121576}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.6441784, y: 4.0124016, z: 0.0026816279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1840973719}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1973829779
 PrefabInstance:
@@ -1367,13 +1661,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022502901}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.8558216, y: 4.0124016, z: 0.0026816279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1840973719}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073626624
 GameObject:
@@ -1402,13 +1696,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073626624}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6966340018194852704}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2073626626
 MonoBehaviour:
@@ -1502,8 +1796,10 @@ MonoBehaviour:
     RefIds:
     - rid: 4531773977505300530
       type: {class: ColliderSensor, ns: Game.Engine.AI, asm: Engine}
+      data: 
     - rid: 4531773977505300531
       type: {class: TargetSelectReasoner, ns: Game.Engine.AI, asm: Engine}
+      data: 
 --- !u!114 &2073626629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,8 +1868,10 @@ MonoBehaviour:
           actions: []
     - rid: 4531773977505300547
       type: {class: PatrolState, ns: Game.Engine.AI, asm: Engine}
+      data: 
     - rid: 4531773977505300549
       type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+      data: 
     - rid: 4531773977505300550
       type: {class: NotBlackboardCondition, ns: Atomic.AI, asm: Atomic.AI.Elements}
       data:
@@ -1581,6 +1879,7 @@ MonoBehaviour:
           rid: 4531773977505300551
     - rid: 4531773977505300551
       type: {class: HasTargetAICondition, ns: Game.Engine.AI, asm: Engine}
+      data: 
     - rid: 4531773977505300553
       type: {class: State, ns: Atomic.AI, asm: Atomic.AI.StateMachine}
       data:
@@ -1593,6 +1892,7 @@ MonoBehaviour:
         - rid: 4531773977505300556
     - rid: 4531773977505300554
       type: {class: AttackState, ns: Game.Engine.AI, asm: Engine}
+      data: 
     - rid: 4531773977505300555
       type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
       data:
@@ -1601,6 +1901,11 @@ MonoBehaviour:
       type: {class: ShowExclamationViewAIAction, ns: Game.Engine.AI, asm: Engine}
       data:
         show: 0
+--- !u!1 &2097825705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2710101867968874339, guid: d142312d175c444e78638fb66130f8aa, type: 3}
+  m_PrefabInstance: {fileID: 1691527713771884024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &665628204057000200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5479154774684278057, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
@@ -1668,7 +1973,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4935866766678847130, guid: d142312d175c444e78638fb66130f8aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1742032274}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d142312d175c444e78638fb66130f8aa, type: 3}
 --- !u!1 &1805414527924857425 stripped
@@ -1758,3 +2066,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7595702925703374503, guid: 14ef64fea78e048c090eca698f2145f7, type: 3}
   m_PrefabInstance: {fileID: 3120722835686227897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 519420032}
+  - {fileID: 985800779}
+  - {fileID: 902084369}
+  - {fileID: 1840973719}
+  - {fileID: 204224399}

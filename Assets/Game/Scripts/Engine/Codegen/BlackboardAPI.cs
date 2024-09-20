@@ -18,6 +18,9 @@ namespace Atomic.AI
         public const int WaypointIndex = 6; // int
         public const int StoppingDistance = 7; // float
         public const int AttackDistance = 8; // float
+        public const int ExclamationPointer = 9; // GameObject : class
+        public const int MelleDistance = 10; // float
+        public const int RangeDistance = 11; // float
 
 
         ///Extensions
@@ -147,6 +150,54 @@ namespace Atomic.AI
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool DelAttackDistance(this IBlackboard obj) => obj.DelFloat(AttackDistance);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasExclamationPointer(this IBlackboard obj) => obj.HasObject(ExclamationPointer);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static GameObject  GetExclamationPointer(this IBlackboard obj) => obj.GetObject<GameObject >(ExclamationPointer);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetExclamationPointer(this IBlackboard obj, out GameObject  value) => obj.TryGetObject(ExclamationPointer, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetExclamationPointer(this IBlackboard obj, GameObject  value) => obj.SetObject(ExclamationPointer, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelExclamationPointer(this IBlackboard obj) => obj.DelObject(ExclamationPointer);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasMelleDistance(this IBlackboard obj) => obj.HasFloat(MelleDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float GetMelleDistance(this IBlackboard obj) => obj.GetFloat(MelleDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetMelleDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(MelleDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetMelleDistance(this IBlackboard obj, float value) => obj.SetFloat(MelleDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelMelleDistance(this IBlackboard obj) => obj.DelFloat(MelleDistance);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasRangeDistance(this IBlackboard obj) => obj.HasFloat(RangeDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float GetRangeDistance(this IBlackboard obj) => obj.GetFloat(RangeDistance);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetRangeDistance(this IBlackboard obj, out float value) => obj.TryGetFloat(RangeDistance, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetRangeDistance(this IBlackboard obj, float value) => obj.SetFloat(RangeDistance, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelRangeDistance(this IBlackboard obj) => obj.DelFloat(RangeDistance);
 
     }
 }

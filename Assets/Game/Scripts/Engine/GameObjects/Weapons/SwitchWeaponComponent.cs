@@ -19,19 +19,29 @@ namespace Game.Engine
 
         [SerializeField]
         private Timer switchWeaponTimer;
+
+        public void SwitchWeaponTo<T>() where T : Weapon
+        {
+            T nextWeapon = _weaponInventory.FindWeapon<T>();
+            this.SwitchWeaponInternal(nextWeapon);
+        }
         
         public void SwitchWeapon()
         {
             Weapon nextWeapon = _weaponInventory.GetNextWeapon(_weaponComponent.Current);
-                
-            _weaponComponent.Current = nextWeapon;
-            this.OnSwitched?.Invoke(nextWeapon);
-            this.switchWeaponTimer.Reset();
+            this.SwitchWeaponInternal(nextWeapon);
         }
-        
+
         public bool IsNotSwitching()
         {
             return this.switchWeaponTimer.IsEnded();
+        }
+
+        private void SwitchWeaponInternal(Weapon nextWeapon)
+        {
+            _weaponComponent.Current = nextWeapon;
+            this.OnSwitched?.Invoke(nextWeapon);
+            this.switchWeaponTimer.Reset();
         }
 
         private void FixedUpdate()

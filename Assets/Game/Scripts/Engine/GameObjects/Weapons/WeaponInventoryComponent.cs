@@ -25,7 +25,7 @@ namespace Game.Engine
             return this.weapons[index];
         }
         
-        public T GetWeapon<T>() where T : Weapon
+        public T FindWeapon<T>() where T : Weapon
         {
             for (int i = 0, count = this.weapons.Length; i < count; i++)
             {

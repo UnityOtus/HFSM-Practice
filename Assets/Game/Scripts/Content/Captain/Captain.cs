@@ -24,7 +24,9 @@ namespace Game.Content
 
         private void Start()
         {
-            _moveComponent.AddCondition(_healthComponent.IsAlive);
+            _moveComponent
+                .AddCondition(_healthComponent.IsAlive)
+                .AddCondition(_switchWeaponComponent.IsNotSwitching);
             
             _attackComponent
                 .AddCondition(_healthComponent.IsAlive)

@@ -9,10 +9,10 @@ namespace Game.Engine
         public int Charges => this.charges;
 
         [SerializeField]
-        private Timer timer;
-
-        [SerializeField]
         private int charges;
+        
+        [SerializeField]
+        private Timer countdown;
 
         private FireBulletComponent _fireBulletComponent;
 
@@ -23,12 +23,12 @@ namespace Game.Engine
 
         public void FixedUpdate()
         {
-            this.timer.Tick(Time.fixedDeltaTime);
+            this.countdown.Tick(Time.fixedDeltaTime);
         }
 
         public override bool CanFire()
         {
-            return this.charges > 0 && this.timer.IsEnded();
+            return this.charges > 0 && this.countdown.IsEnded();
         }
 
         public override void Fire()
@@ -37,7 +37,7 @@ namespace Game.Engine
             {
                 _fireBulletComponent.Fire();
                 this.charges--;
-                this.timer.Reset();
+                this.countdown.Reset();
             }
         }
     }

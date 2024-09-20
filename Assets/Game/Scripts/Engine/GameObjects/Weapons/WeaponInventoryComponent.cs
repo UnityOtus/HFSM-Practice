@@ -21,7 +21,7 @@ namespace Game.Engine
                 return this.weapons[0];
             }
 
-            index += 1 % this.weapons.Length;
+            index = (index + 1) % this.weapons.Length;
             return this.weapons[index];
         }
         

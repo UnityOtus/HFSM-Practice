@@ -1,33 +1,37 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Engine
 {
     [Serializable]
-    public class Timer
+    public sealed class Timer
     {
-        public float duration;
-        public float time;
+        [field: SerializeField]
+        public float Duration { get; private set; }
 
-        public Timer(float duration)
+        [field: SerializeField]
+        public float RemainingTime { get; private set; }
+
+        public Timer(float duration, float remainingTime)
         {
-            this.duration = duration;
-            this.time = duration;
+            this.Duration = duration;
+            this.RemainingTime = remainingTime;
         }
 
         public void Tick(float deltaTime)
         {
-            this.time = Mathf.Max(0, this.time - deltaTime);
+            this.RemainingTime = Mathf.Max(0, this.RemainingTime - deltaTime);
         }
 
         public void Reset()
         {
-            this.time = this.duration;
+            this.RemainingTime = this.Duration;
         }
 
         public bool IsEnded()
         {
-            return this.time <= 0;
+            return this.RemainingTime <= 0;
         }
     }
 }

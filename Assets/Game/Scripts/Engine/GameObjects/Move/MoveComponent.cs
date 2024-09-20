@@ -39,9 +39,10 @@ namespace Game.Engine
             _rigidbody.velocity = new Vector2(speedX, _rigidbody.velocity.y);
         }
 
-        public void AddCondition(Func<bool> condition)
+        public MoveComponent AddCondition(Func<bool> condition)
         {
             this.conditions.AddCondition(condition);
+            return this;
         }
 
         public bool IsMoving()

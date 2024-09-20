@@ -10,6 +10,7 @@ namespace Game.Engine
         
         private Animator _animator;
 
+        [SerializeField]
         private DeathComponent _dealthComponent;
 
         private void Awake()
